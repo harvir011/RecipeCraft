@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Calistoga:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateTilt {
+  0%, 100% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes moveRight {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+* {
+  color-scheme: light;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #0F172A;
+  background-color: #FFFBEB;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(154, 52, 18, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, rgba(154, 52, 18, 0.04) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(5, 150, 105, 0.03) 0px, transparent 30%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Calistoga', serif;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+}
+
+a {
+  transition: color 0.2s;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-accent text-white font-semibold rounded-xl hover:bg-accent-dark hover:-translate-y-1 transition-all duration-300 active:translate-y-0 cursor-pointer;
+    box-shadow: 0 10px 30px rgba(5, 150, 105, 0.25);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 15px 40px rgba(5, 150, 105, 0.35);
+  }
+
+  .btn-primary:active {
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white text-terra font-semibold rounded-xl border-2 border-terra hover:bg-cream transition-all duration-300 cursor-pointer;
+    box-shadow: 0 4px 15px rgba(154, 52, 18, 0.12);
+  }
+
+  .btn-secondary:hover {
+    box-shadow: 0 8px 25px rgba(154, 52, 18, 0.2);
+  }
+
+  .card {
+    @apply bg-white rounded-2xl transition-all duration-300 p-6 border border-border;
+    box-shadow: 0 4px 20px rgba(154, 52, 18, 0.1);
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  .card:hover {
+    box-shadow: 0 15px 50px rgba(154, 52, 18, 0.18);
+    transform: translateY(-4px);
+  }
+
+  .recipe-card {
+    @apply bg-white rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer;
+    box-shadow: 0 4px 20px rgba(154, 52, 18, 0.1);
+    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .recipe-card:hover {
+    box-shadow: 0 20px 60px rgba(154, 52, 18, 0.25);
+    transform: translateY(-8px) scale(1.01);
+  }
+
+  .recipe-card-image {
+    @apply relative w-full h-48 overflow-hidden bg-gradient-to-br from-cream to-muted;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .recipe-card:hover .recipe-card-image {
+    transform: scale(1.12) rotate(1deg);
+  }
+
+  .recipe-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-terra via-transparent to-transparent opacity-0 transition-opacity duration-300 flex items-end justify-center pb-4;
+  }
+
+  .recipe-card:hover .recipe-overlay {
+    @apply opacity-100;
+  }
+
+  .cook-btn {
+    @apply px-4 py-2 bg-accent text-white rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+  }
+
+  .cook-btn:hover {
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
+  }
+
+  .animate-slideIn {
+    animation: slideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .animate-slideUp {
+    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  .animate-rotateTilt {
+    animation: rotateTilt 3s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-sm bg-white/80 border border-white/20;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-terra via-accent-dark to-accent bg-clip-text text-transparent;
+  }
+
+  .premium-shadow {
+    box-shadow: 0 20px 60px rgba(154, 52, 18, 0.15), 0 0 40px rgba(5, 150, 105, 0.08);
+  }
+}
